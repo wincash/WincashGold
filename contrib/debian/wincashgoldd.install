@@ -1,0 +1,3 @@
+usr/local/bin/wincashgoldd usr/bin
+usr/local/bin/wincashgold-cli usr/bin
+debian/examples/wincashgold.conf etc/wincashgold

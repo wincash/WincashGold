@@ -1,0 +1,11 @@
+[Protocol]
+exec=wincashgold-qt '%u'
+protocol=wincashgold
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

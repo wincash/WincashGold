@@ -1,0 +1,8 @@
+/usr/bin/wincashgold-cli		--	gen_context(system_u:object_r:wincashgold_exec_t,s0)
+/usr/sbin/wincashgoldd		--	gen_context(system_u:object_r:wincashgold_exec_t,s0)
+/usr/lib(64)?/wincashgold/wincashgoldd		--	gen_context(system_u:object_r:wincashgold_exec_t,s0)
+
+/etc/wincashgold(/.*)?		gen_context(system_u:object_r:wincashgold_conf_t,s0)
+/var/lib/wincashgold(/.*)?		gen_context(system_u:object_r:wincashgold_var_lib_t,s0)
+
+(/var)?/run/wincashgoldd(/.*)?   gen_context(system_u:object_r:wincashgold_var_run_t,s0)

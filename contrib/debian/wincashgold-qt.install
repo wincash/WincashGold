@@ -1,0 +1,6 @@
+usr/local/bin/wincashgold-qt usr/bin
+share/pixmaps/wincashgold32.xpm usr/share/pixmaps
+share/pixmaps/wincashgold16.xpm usr/share/pixmaps
+share/pixmaps/wincashgold128.png usr/share/pixmaps
+debian/wincashgold-qt.desktop usr/share/applications
+debian/wincashgold-qt.protocol usr/share/kde4/services/

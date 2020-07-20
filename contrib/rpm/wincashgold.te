@@ -1,0 +1,81 @@
+policy_module(wincashgold, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type wincashgold_t;
+type wincashgold_exec_t;
+init_daemon_domain(wincashgold_t, wincashgold_exec_t)
+
+permissive wincashgold_t;
+
+type wincashgold_initrc_exec_t;
+init_script_file(wincashgold_initrc_exec_t)
+
+type wincashgold_conf_t;
+files_type(wincashgold_conf_t)
+
+type wincashgold_var_lib_t;
+files_type(wincashgold_var_lib_t)
+
+type wincashgold_var_run_t;
+files_type(wincashgold_var_run_t)
+
+type wincashgold_port_t;
+corenet_port(wincashgold_port_t)
+
+########################################
+#
+# wincashgold local policy
+#
+allow wincashgold_t self:process { fork };
+
+allow wincashgold_t self:fifo_file rw_fifo_file_perms;
+allow wincashgold_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(wincashgold_t, wincashgold_conf_t, wincashgold_conf_t)
+manage_files_pattern(wincashgold_t, wincashgold_conf_t, wincashgold_conf_t)
+
+manage_dirs_pattern(wincashgold_t, wincashgold_var_lib_t, wincashgold_var_lib_t)
+manage_files_pattern(wincashgold_t, wincashgold_var_lib_t, wincashgold_var_lib_t)
+files_var_lib_filetrans(wincashgold_t, wincashgold_var_lib_t, { dir file })
+
+manage_dirs_pattern(wincashgold_t, wincashgold_var_run_t, wincashgold_var_run_t)
+manage_files_pattern(wincashgold_t, wincashgold_var_run_t, wincashgold_var_run_t)
+
+sysnet_dns_name_resolve(wincashgold_t)
+corenet_all_recvfrom_unlabeled(wincashgold_t)
+
+allow wincashgold_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(wincashgold_t)
+corenet_tcp_sendrecv_generic_node(wincashgold_t)
+corenet_tcp_sendrecv_all_ports(wincashgold_t)
+corenet_tcp_bind_generic_node(wincashgold_t)
+
+gen_require(`
+    type wincashgold_port_t;
+')
+allow wincashgold_t wincashgold_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type wincashgold_port_t;
+')
+allow wincashgold_t wincashgold_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(wincashgold_t)
+
+files_read_etc_files(wincashgold_t)
+
+miscfiles_read_localization(wincashgold_t)
+
+sysnet_dns_name_resolve(wincashgold_t)
+
+allow wincashgold_t wincashgold_exec_t:file execute_no_trans;
+allow wincashgold_t self:process setsched;
+corecmd_exec_ls(wincashgold_t)
+corenet_tcp_connect_http_port(wincashgold_t)
+dev_read_urand(wincashgold_t)
+fs_getattr_xattr_fs(wincashgold_t)
+kernel_read_system_state(wincashgold_t)

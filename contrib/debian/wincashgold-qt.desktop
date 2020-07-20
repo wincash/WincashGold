@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=WINCASHGOLD Core
+Comment=WINCASHGOLD P2P Cryptocurrency
+Comment[fr]=WINCASHGOLD, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=WINCASHGOLD, eşten eşe kriptografik sanal para birimi
+Exec=wincashgold-qt %u
+Terminal=false
+Type=Application
+Icon=wincashgold128
+MimeType=x-scheme-handler/wincashgold;
+Categories=Office;Finance;
+StartupWMClass=WincashGold-qt
